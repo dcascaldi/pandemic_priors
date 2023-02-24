@@ -37,7 +37,7 @@ savefigures = 1                # savefigures = 1 --> Save figures as .PNG
 
 ####################### Monthly Data #######################
 
-cd(raw"C:\Pandemic Priors") # set your folder path
+cd(dirname(@__FILE__))
 b1 = DataFrame(XLSX.readtable("Data.xlsx","Sheet1"))
 Ynames = ["EBP","S&P 500","Shadow Rate","PCE","PCE Price Index","Employment","Ind. Production","Unemp. Rate"];
 time_vec = Date(1975, 1, 1):Month(1):Date(2022, 12, 1)

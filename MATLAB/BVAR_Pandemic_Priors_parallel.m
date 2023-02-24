@@ -40,6 +40,9 @@ Yname = {'EBP','S\&P 500','Shadow Rate','PCE','PCE Price Index','Employment','In
 time_vec = datetime(1975,1,1):calmonths(1):datetime(2022,12,1); % Specify the dates vector
 
 %% Preparing the data
+n_cores = feature('numcores');
+fprintf('Working with %.0f parallel cores\n\n',n_cores);
+
 Yraw = data;
 for ee=1:size(log_vector,2)
     if log_vector(ee)==1; Yraw(:,ee) = log(Yraw(:,ee))*100; end
@@ -85,7 +88,7 @@ if phi ==999 % Optimal phi
     end
     [Density, GridPosition] = max(PhiTest);
     phi_use = phi_temp(GridPosition);
-    fprintf('Optimal phi for the model is %g.\n',phi_use);
+    fprintf('Optimal phi for the model is %g.\n\n',phi_use);
 else
     phi_use = phi;
 end
@@ -110,11 +113,14 @@ v0=m_tot+2; v1=size(Xst,1)+2-size(Xst,2);
 mstar = A_post(:); xx=Xst'*Xst;
 ixx=xx\eye(size(xx,2));  %inv(X0'X0)
 
-% h = waitbar(0,'Drawing coefficients...');
 A_companion_T = zeros(rps,nvar*nAR,nvar*nAR);
 A0hat_T = zeros(rps,nvar,nvar);
 parfor iii=1:rps
-%     waitbar(iii/(rps),h,'Drawing coefficients...')
+    if iii ==1
+        fprintf('Starting %.0f posterior draws with %.0f threads\n',rps,n_cores);
+    elseif iii==rps
+        fprintf("Posterior draws finished!\n\n")
+    end
     control2=0;
     while control2==0
         sigmarep = iwishrnd(SSE_post,v1); % draw SIGMA
@@ -139,13 +145,15 @@ parfor iii=1:rps
     A_companion_T(iii,:,:) = A_companion_dr;
     A0hat_T(iii,:,:) = A0hat;
 end
-% close(h);
 
 %% IRFs
 outs = zeros(nshocks,rps,nimp,nvar);
-% h = waitbar(0,'Calculating IRFs...');
 parfor iii=1:rps
-%     waitbar(iii/(rps),h,'Calculating IRFs...')
+    if iii ==1
+        fprintf('Starting %.0f IRFs with %.0f threads\n',rps,n_cores);
+    elseif iii==rps
+        fprintf("IRFs finished!\n\n")
+    end
     IMP_dr=squeeze(A0hat_T(iii,:,:));
     A_companion_dr=squeeze(A_companion_T(iii,:,:));
     invIMP_dr = (IMP_dr)\eye(size(IMP_dr,2)); % inv(IMP_dr)
@@ -166,7 +174,6 @@ parfor iii=1:rps
         end
     end
 end
-% close(h);
 
 %% Plot figures
 for pp=1:nshocks

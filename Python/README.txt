@@ -1,4 +1,4 @@
-Files and replication JULIA codes of Cascaldi-Garcia, D., "Pandemic Priors"
+Files and replication Python codes of Cascaldi-Garcia, D., "Pandemic Priors"
 
 Use of code for research purposes is permitted as long as proper reference to source is given.
 ______________________________________

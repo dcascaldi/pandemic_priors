@@ -1,6 +1,6 @@
 # pandemic_priors
 
-A simple, easy, and flexible way of estimating Bayesian VARs taking into consideration the pandemic period, as a Minnesota prior with time dummies, available in MATLAB and Julia.  Codes embed a test for the optimal level of shrinkage for the pandemic period.
+A simple, easy, and flexible way of estimating Bayesian VARs taking into consideration the pandemic period, as a Minnesota prior with time dummies, available in MATLAB, Julia, Python, and R.  Codes embed a test for the optimal level of shrinkage for the pandemic period.
 
 Paper available at my website: www.danilocascaldigarcia.com
 

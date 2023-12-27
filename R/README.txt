@@ -13,6 +13,6 @@ Auxiliary functions, including the creation of the dummy observations are stored
 
 Codes written in R 4.3.2 and RStudio 2023.12.0
 
-This version: February 2023
+This version: December 2023
 
 Danilo Cascaldi-Garcia

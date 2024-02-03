@@ -68,3 +68,11 @@ Auxiliary functions, including the creation of the dummy observations are stored
 
 Codes written in R 4.3.2 and RStudio 2023.12.0
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+References:
+
+Bańbura, M., Giannone, D., & Reichlin, L. (2010). Large Bayesian vector auto regressions. Journal of applied Econometrics, 25(1), 71-92.
+
+Chan, J. C. (2022). Asymmetric conjugate priors for large Bayesian VARs. Quantitative economics, 13(3), 1145-1169.
+
+Giannone, D., Lenza, M., & Primiceri, G. E. (2015). Prior selection for vector autoregressions. Review of Economics and Statistics, 97(2), 436-451.

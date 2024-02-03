@@ -2,6 +2,8 @@
 
 A simple, easy, and flexible way of estimating Bayesian VARs taking into consideration the pandemic period, as a Minnesota prior with time dummies, available in MATLAB, Julia, Python, and R.  Codes embed a test for the optimal level of shrinkage for the pandemic period.
 
+Also available MATLAB Pandemic Priors extensions of the Giannone, Lenza, and Primiceri (2015) optimal priors and the Chan (2022) asymmetric conjugate priors.
+
 Paper available at my website: www.danilocascaldigarcia.com
 
 Use of code for research purposes is permitted as long as proper reference to source is given.

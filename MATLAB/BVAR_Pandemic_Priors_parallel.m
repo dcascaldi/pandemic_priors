@@ -61,9 +61,11 @@ if constant==1; X1 = [Ylag(nAR+1:Traw,:) ones(Traw-nAR,1)]; else; X1 = Ylag(nAR+
 %% COVID-19 time dummies
 X1 = [X1, zeros(size(X1,1),covid_periods)];
 if diff_or_lv ==1
-    covid_ind = datefind(datetime(2020,3,1),time_vec,1)-nAR;
+    %covid_ind = datefind(datetime(2020,3,1),time_vec,1)-nAR;
+    covid_ind = find(datetime(2020,3,1)==time_vec)-nAR; % Find March/2020
 else
-    covid_ind = datefind(datetime(2020,3,1),time_vec,1)-nAR-1;
+    %covid_ind = datefind(datetime(2020,3,1),time_vec,1)-nAR-1;
+    covid_ind = find(datetime(2020,3,1)==time_vec)-nAR-1; % Find March/2020
 end
 X1(covid_ind:covid_ind+covid_periods-1,end-covid_periods+1:end) = eye(covid_periods);
 

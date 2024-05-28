@@ -94,9 +94,11 @@ end
 
 % COVID-19 dummies
 if diff_or_lv ==1
-    covid_ind = datefind(datetime(2020,3,1),time_vec,1)-p;
+    %covid_ind = datefind(datetime(2020,3,1),time_vec,1)-p;
+    covid_ind = find(datetime(2020,3,1)==time_vec)-p; % Find March/2020
 else
-    covid_ind = datefind(datetime(2020,3,1),time_vec,1)-p-1;
+    %covid_ind = datefind(datetime(2020,3,1),time_vec,1)-p-1;
+    covid_ind = find(datetime(2020,3,1)==time_vec)-p-1; % Find March/2020
 end
 Zpp = [Z, zeros(size(Z,1),covid_periods)];
 Zpp(covid_ind:covid_ind+covid_periods-1,end-covid_periods+1:end) = eye(covid_periods);

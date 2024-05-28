@@ -9,6 +9,8 @@ clear
 close all
 addpath([cd '/Data'])  %on a MAC / Linux
 %addpath([cd '\Data']) %on a PC
+addpath([cd '/subroutines'])  %on a MAC / Linux
+%addpath([cd '\subroutines']) %on a PC
 
 %% Settings
 % Define specification of the BVAR
@@ -32,7 +34,8 @@ log_vector = [0 1 0 1 1 1 1 0]; % 1 for variable in logs
 for ee=1:size(log_vector,2); if log_vector(ee)==1; data(:,ee) = log(data(:,ee))*100; end; end
 
 %% Pandemic indicator
-covid_ind = datefind(datetime(2020,3,1),time_vec,1)-lags; % Find March/2020
+%covid_ind = datefind(datetime(2020,3,1),time_vec,1)-lags; % Find March/2020
+covid_ind = find(datetime(2020,3,1)==time_vec)-lags; % Find March/2020
 
 %% Estimation
 res = bvarGLP_pp(data,lags,covid_ind,covid_periods,'mcmc',1,'MCMCconst',1,'MNpsi',1,'sur',1,'noc',1,'Ndraws',2*rps,'hyperpriors',1,'MCMCfcast',1,'hz',hmax);
